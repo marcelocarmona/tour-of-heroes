@@ -1,8 +1,9 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
 import { HttpModule }    from '@angular/http';
+import { RouterModule }   from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -13,15 +14,17 @@ import { InMemoryDataService }  from './in-memory-data.service';
 import { AppComponent } from './app.component';
 import { HeroDetailComponent } from "./hero-detail.component";
 import { HeroesComponent } from './heroes.component';
-import { HeroService } from './hero.service';
-import { RouterModule }   from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { HeroSearchComponent } from './hero-search.component';
+import { MyFormsComponent } from './my-forms.component';
+
+import { HeroService } from './hero.service';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService),
@@ -31,7 +34,8 @@ import { HeroSearchComponent } from './hero-search.component';
     HeroDetailComponent,
     HeroesComponent,
     DashboardComponent,
-    HeroSearchComponent ],
+    HeroSearchComponent,
+    MyFormsComponent ],
   providers: [ HeroService ],
   bootstrap: [ AppComponent ]
 })

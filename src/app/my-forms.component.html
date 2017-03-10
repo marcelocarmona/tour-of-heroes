@@ -1,0 +1,30 @@
+<h1>Angular Forms</h1>
+
+<form [formGroup]="heroForm" novalidate>
+  <div class="form-group">
+    <label class="center-block">Name:
+      <input type="text" class="form-control" formControlName="name">
+    </label>
+    <div *ngIf="heroForm.controls['name'].hasError('required') && heroForm.controls['name'].touched" class="error">Name is required.</div>
+    <div *ngIf="heroForm.controls['name'].hasError('minlength') && heroForm.controls['name'].touched" class="error">Name is very short.</div>
+    <div *ngIf="heroForm.controls['name'].hasError('maxlength') && heroForm.controls['name'].touched" class="error">Name is very long.</div>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Street:
+      <input class="form-control" formControlName="street">
+    </label>
+    <div *ngIf="heroForm.controls['street'].hasError('required') && heroForm.controls['street'].touched" class="error">Street is required.</div>
+  </div>
+  <div class="form-group">
+    <label class="center-block">City:
+      <input class="form-control" formControlName="city">
+    </label>
+    <div *ngIf="heroForm.controls['city'].hasError('required') && heroForm.controls['city'].touched" class="error">City is required.</div>
+  </div>
+</form>
+
+<p>Form value: {{ heroForm.value | json }}</p>
+<p>Form status: {{ heroForm.status | json }}</p>
+<p>Form pristine: {{ heroForm.pristine | json }}</p>
+<p>Form toched: {{ heroForm.name | json }}</p>
+
