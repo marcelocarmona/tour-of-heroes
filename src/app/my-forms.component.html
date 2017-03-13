@@ -21,6 +21,7 @@
     </label>
     <div *ngIf="heroForm.controls['city'].hasError('required') && heroForm.controls['city'].touched" class="error">City is required.</div>
   </div>
+  <input type="submit" value="send">
 </form>
 
 <p>Form value: {{ heroForm.value | json }}</p>
