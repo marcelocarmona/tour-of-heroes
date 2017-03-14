@@ -9,23 +9,43 @@
     <div *ngIf="heroForm.controls['name'].hasError('minlength') && heroForm.controls['name'].touched" class="error">Name is very short.</div>
     <div *ngIf="heroForm.controls['name'].hasError('maxlength') && heroForm.controls['name'].touched" class="error">Name is very long.</div>
   </div>
-  <div class="form-group">
-    <label class="center-block">Street:
-      <input class="form-control" formControlName="street">
-    </label>
-    <div *ngIf="heroForm.controls['street'].hasError('required') && heroForm.controls['street'].touched" class="error">Street is required.</div>
+  <div formArrayName="secretLairs" class="well well-lg">
+
+    <div *ngFor="let address of secretLairs.controls; let i=index" [formGroupName]="i" >
+      <h4>Address #{{i + 1}}</h4>
+      <div class="form-group">
+        <label class="center-block">Street:
+          <input class="form-control" formControlName="street">
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="center-block">City:
+          <input class="form-control" formControlName="city">
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="center-block">State:
+          <select class="form-control" formControlName="state">
+            <option *ngFor="let state of states" [value]="state">{{state}}</option>
+          </select>
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="center-block">Zip Code:
+          <input class="form-control" formControlName="zip">
+        </label>
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <label class="center-block">City:
-      <input class="form-control" formControlName="city">
-    </label>
-    <div *ngIf="heroForm.controls['city'].hasError('required') && heroForm.controls['city'].touched" class="error">City is required.</div>
-  </div>
+  <button (click)="addAddress()">Add address</button>
+  <button (click)="removeAddress()">Remove address</button>
   <input type="submit" value="send">
 </form>
 
-<p>Form value: {{ heroForm.value | json }}</p>
+<pre>
+  <p>Form value: {{ heroForm.value | json }}</p>
+</pre>
+
 <p>Form status: {{ heroForm.status | json }}</p>
 <p>Form pristine: {{ heroForm.pristine | json }}</p>
 <p>Form toched: {{ heroForm.name | json }}</p>
-
